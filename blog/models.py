@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class Category(models.Model):
@@ -7,6 +8,9 @@ class Category(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('get_category', kwargs={'slug': self.slug})
 
     class Meta:
         ordering = ['title']
@@ -19,6 +23,9 @@ class Tag(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('get_tag', kwargs={'slug': self.slug})
 
     class Meta:
         ordering = ['title']
@@ -41,6 +48,9 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('get_post', kwargs={'slug': self.slug})
 
     class Meta:
         ordering = ['-created_at']
