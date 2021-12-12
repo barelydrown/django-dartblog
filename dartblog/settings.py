@@ -22,6 +22,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     # My apps:
     'blog.apps.BlogConfig',
+    'api.apps.ApiConfig',
 
     # Installed apps:
     'debug_toolbar',
