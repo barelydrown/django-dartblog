@@ -15,8 +15,12 @@ class TagSerializer(serializers.ModelSerializer):
 
 
 class PostSerializer(serializers.ModelSerializer):
-    category = CategorySerializer()
-    tags = serializers.SlugRelatedField(slug_field='slug', many=True)
+    category = serializers.SlugRelatedField(slug_field='slug', read_only=True)
+    tags = serializers.SlugRelatedField(
+        slug_field='slug',
+        many=True,
+        read_only=True
+    )
 
     class Meta:
         model = Post
