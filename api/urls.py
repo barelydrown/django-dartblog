@@ -1,4 +1,7 @@
 from django.urls import path, include
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView, TokenRefreshView
+)
 
 from .views import (
     CategoryListView, TagListView, PostListView,
@@ -9,7 +12,10 @@ from .views import (
 )
 
 urlpatterns = [
+    # Auth
     path('auth/', include('djoser.urls')),
+    path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('token/refersh/', TokenRefreshView.as_view(), name='token_refresh'),
 
     # Category Model
     path('category/all/', CategoryListView.as_view()),

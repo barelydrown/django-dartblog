@@ -20,16 +20,18 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    # My apps:
+    # my apps:
     'blog.apps.BlogConfig',
+    'api.apps.ApiConfig',
 
-    # Installed apps:
+    # installed apps:
     'debug_toolbar',
     'ckeditor',
-    'rest_framework',
     'djoser',
+    'rest_framework',
+    'rest_framework_simplejwt',
 
-    # Default apps:
+    # default apps:
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
