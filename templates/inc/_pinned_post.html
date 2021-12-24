@@ -1,0 +1,19 @@
+<div class="col-md-12">
+            <div class="single-post-big">
+              <div class="big-image">
+                  {% if pinned.photo %}
+                  <img src="{{ pinned.photo.url }}" alt="{{ pinned.title }}">
+                {% else %}
+                  <img src="https://picsum.photos/id/1060/300/201/?blur=2"
+                       alt="{{ post.title }}">
+                  {% endif %}
+              </div>
+              <div class="big-text">
+                <h3><a href="{{ pinned.get_absolute_url }}">{{ pinned.title }}</a></h3>
+                {{ pinned.content|safe }}
+                <h4><span class="date">{{ pinned.created_at }}</span><span
+                        class="author">Posted By: <span class="author-name">{{ pinned.author }}</span></span>
+                </h4>
+              </div>
+            </div>
+          </div>

@@ -13,6 +13,7 @@ class Index(ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['pinned'] = Post.objects.get(is_pinned=True)
         context['title'] = 'Classic Blog Design'
         return context
 
@@ -28,6 +29,7 @@ class PostsByCategory(ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['pinned'] = Post.objects.get(is_pinned=True)
         context['title'] = Category.objects.get(slug=self.kwargs['slug'])
         return context
 
@@ -43,6 +45,7 @@ class PostsByTag(ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['pinned'] = Post.objects.get(is_pinned=True)
         context['title'] = 'Posts by Tags: ' + str(Tag.objects.get(
             slug=self.kwargs['slug']))
         return context

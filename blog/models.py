@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.db import transaction
 
 
 class Category(models.Model):
@@ -45,9 +46,17 @@ class Post(models.Model):
         related_name='posts'
     )
     tags = models.ManyToManyField('Tag', blank=True, related_name='tags')
+    is_pinned = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        if not self.is_pinned:
+            return super(Post, self).save(*args, **kwargs)
+        with transaction.atomic():
+            Post.objects.filter(is_pinned=True).update(is_pinned=False)
+            return super(Post, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
         return reverse('get_post', kwargs={'slug': self.slug})
